@@ -1,6 +1,6 @@
 # kute
 
-A utility to generate the minimal necessary kubernetes config files for a web app running on ACP.
+A utility to generate the minimal necessary config files for a web app running on kubernetes.
 
 ## Prerequisites
 
@@ -78,7 +78,7 @@ For deployments, the following additional options are required:
 
 * `server` - the kubernetes server - reads from `process.env.KUBE_SERVER` by default
 * `token` - the kubernetes token - reads from `process.env.KUBE_TOKEN` by default
-* `namespace` - the ACP namespace to deploy into
+* `namespace` - the namespace to deploy into
 
 ### Generate options
 
