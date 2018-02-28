@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const usage = require('./usage');
+const kute = require('../lib/kute');
+const UsageError = require('../lib/usage-error');
+const args = require('minimist')(process.argv.slice(2));
+
+const config = {};
+const action = args._[0];
+const configFile = args._[1] || '.kute.js';
+
+if (!['generate', 'deploy'].includes(action)) {
+  usage(`Unrecognised action: ${action}`);
+  process.exit(1);
+}
+
+if (configFile) {
+  try {
+    const local = require(path.resolve(process.cwd(), configFile));
+    Object.assign(config, local);
+  } catch (e) {
+    throw new Error(`Could not read configuration from ${configFile}`);
+  }
+}
+
+const defaults = {
+  server: process.env.KUBE_SERVER,
+  token: process.env.KUBE_TOKEN
+};
+
+const options = Object.assign({}, defaults, config, args);
+options.action = action;
+
+kute(options)
+  .catch(e => {
+    if (e instanceof UsageError) {
+      usage(e.message);
+    } else {
+      console.error(e);
+    }
+    process.exit(1);
+  });

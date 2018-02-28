@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{{name}}}-ingress
+  annotations:
+    ingress.kubernetes.io/secure-backends: "true"
+    kubernetes.io/ingress.class: "nginx-external"
+    stable.k8s.psg.io/kcm.provider: http
+  labels:
+    stable.k8s.psg.io/kcm.class: "default"
+spec:
+  tls:
+  - hosts:
+    - {{{url}}}
+    secretName: {{{name}}}-cert
+  rules:
+  - host: {{{url}}}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{{name}}}
+          servicePort: 10443
