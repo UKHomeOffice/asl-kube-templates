@@ -97,3 +97,7 @@ $ kute generate config.js --out /app/deploy
 ## Caveats
 
 * Your app must be configured to listen on port 8080
+
+## Roadmap
+
+* [ ] Add a flag to deploy a redis instance for UI application session storage
