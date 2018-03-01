@@ -16,8 +16,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "minimist": "^1.2.0",
-    "mustache": "^2.3.0",
-    "rimraf": "^2.6.2"
+    "mustache": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "^4.18.1",
