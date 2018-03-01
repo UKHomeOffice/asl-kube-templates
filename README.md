@@ -24,6 +24,8 @@ kube-cookbook [config.js]
 
 If a path to a config file is defined, it should be a javascript file that exports an object, or a json file.
 
+If no file is specified `.kube.js` is loaded by default.
+
 ## Options
 
 All options can be defined either in a configuration file, or as command line flags.
