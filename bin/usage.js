@@ -2,8 +2,7 @@ module.exports = msg => {
   msg && console.log(msg);
 
   console.log(`
-    kute generate [file] [options]
-    kute deploy [file] [options]
+    kube-cookbook [file] [options]
 
     Options:
 
@@ -13,14 +12,6 @@ module.exports = msg => {
 
       --replicas  number of instances of your app to run - default: 1
       --memory    memory limit assigned to your app - default: '512Mi'
-
-    Deploy Options:
-
-      --server    kubernetes server - reads from process.env.KUBE_SERVER by default
-      --token     kubernetes token - reads from process.env.KUBE_TOKEN by default
-      --namespace ACP namespace to deploy into
-    Generate Options:
-
       --out       directory in which to create files - default .
 `);
 

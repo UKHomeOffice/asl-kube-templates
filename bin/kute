@@ -2,13 +2,13 @@
 
 const path = require('path');
 const usage = require('./usage');
-const kute = require('../lib/kute');
+const cookbook = require('../lib/cookbook');
 const UsageError = require('../lib/usage-error');
 const args = require('minimist')(process.argv.slice(2));
 
 const config = {};
 const action = args._[0];
-const configFile = args._[1] || '.kute.js';
+const configFile = args._[1] || '.kube.js';
 
 if (!['generate', 'deploy'].includes(action)) {
   usage(`Unrecognised action: ${action}`);
@@ -32,7 +32,7 @@ const defaults = {
 const options = Object.assign({}, defaults, config, args);
 options.action = action;
 
-kute(options)
+cookbook(options)
   .catch(e => {
     if (e instanceof UsageError) {
       usage(e.message);

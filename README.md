@@ -12,21 +12,15 @@ A utility to generate the minimal necessary config files for a web app running o
 Clone the repo, and link the binary into your `PATH`:
 
 ```
-git clone git@github.com:lennym/kute.git
-cd kute
+git clone git@github.com:lennym/kube-cookbook.git
+cd kube-cookbook
 npm link
 ```
 
 Then in the project you want to create deployment files for:
 
 ```
-kute generate [config.js]
-```
-
-Or to deploy - _requires `kd` binary to be installed and on your `PATH`_:
-
-```
-kute deploy [config.js]
+kube-cookbook [config.js]
 ```
 
 If a path to a config file is defined, it should be a javascript file that exports an object, or a json file.
@@ -47,6 +41,7 @@ Additional options:
 * `memory` - the memory limit assigned to your app - default: `'512Mi'`
 * `env` - a map of environment variables defined on your app
 * `nginx` - a map of environment variables defined on your nginx proxy
+* `out` - the directory in which to create generated files - default `.`
 
 ### Environment variables
 
@@ -71,33 +66,3 @@ module.exports = {
   }
 }
 ```
-
-### Deployment options
-
-For deployments, the following additional options are required:
-
-* `server` - the kubernetes server - reads from `process.env.KUBE_SERVER` by default
-* `token` - the kubernetes token - reads from `process.env.KUBE_TOKEN` by default
-* `namespace` - the namespace to deploy into
-
-### Generate options
-
-By default, generated files are saved into your current working directory. To override this, you can set an `--out` option.
-
-```
-$ kute generate config.js --out /app/deploy
-```
-
-## What you get
-
-* An ingress
-* An application sitting behind an nginx proxy
-* A network policy allowing traffic from the ingress to the application
-
-## Caveats
-
-* Your app must be configured to listen on port 8080
-
-## Roadmap
-
-* [ ] Add a flag to deploy a redis instance for UI application session storage
