@@ -30,20 +30,10 @@ If no file is specified `.kube.js` is loaded by default.
 
 All options can be defined either in a configuration file, or as command line flags.
 
-The following minimal options must be defined:
-
-* `name` - the name for your deployment
-* `image` - the location of the docker image for your app
-* `url` - the url on which your app will run
-
-Additional options:
-
 * `recipe` - the set of templates to generate, depending on the type of app being created - default `'webapp'`
-* `replicas` - the number of instances of your app to run - default: `1`
-* `memory` - the memory limit assigned to your app - default: `'512Mi'`
-* `env` - a map of environment variables defined on your app
-* `nginx` - a map of environment variables defined on your nginx proxy
 * `out` - the directory in which to create generated files - default `.`
+
+Additional options for a recipe are [documented for that recipe](#webapp-options).
 
 ### Environment variables
 
@@ -73,3 +63,17 @@ module.exports = {
 
 Currently only one recipe is available - a basic webapp.
 
+### Webapp Options
+
+The following minimal options must be defined:
+
+* `name` - the name for your deployment
+* `image` - the location of the docker image for your app
+* `url` - the url on which your app will run
+
+Additional options:
+
+* `replicas` - the number of instances of your app to run - default: `1`
+* `memory` - the memory limit assigned to your app - default: `'512Mi'`
+* `env` - a map of environment variables defined on your app
+* `nginx` - a map of environment variables defined on your nginx proxy
