@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const path = require('path');
+const fs = require('fs');
+const yaml = require('js-yaml');
 const usage = require('./usage');
 const cookbook = require('../lib/cookbook');
 const UsageError = require('../lib/usage-error');
@@ -10,22 +12,26 @@ const config = {};
 const configFile = args._[0] || '.kube.js';
 
 if (configFile) {
+  const type = path.extname(configFile);
+  const filePath = path.resolve(process.cwd(), configFile);
   try {
-    const local = require(path.resolve(process.cwd(), configFile));
-    Object.assign(config, local);
+    if (type === '.js' || type === '.json') {
+      Object.assign(config, require(filePath));
+    } else if (type === '.yaml' || type === '.yml') {
+      const content = fs.readFileSync(filePath).toString();
+      Object.assign(config, yaml.safeLoad(content));
+    }
   } catch (e) {
-    throw new Error(`Could not read configuration from ${configFile}`);
+    console.log(e);
+    throw new Error(`Could not read configuration from ${filePath}`);
   }
 }
 
 const defaults = {
-  server: process.env.KUBE_SERVER,
-  token: process.env.KUBE_TOKEN
+  recipe: 'webapp'
 };
 
-const options = Object.assign({}, defaults, config, args);
-
-options.recipe = options.recipe || 'webapp';
+const options = Object.assign(defaults, config, args);
 
 cookbook(options)
   .catch(e => {

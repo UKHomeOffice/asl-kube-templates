@@ -22,9 +22,9 @@ Then in the project you want to create deployment files for:
 kube-cookbook [config.js]
 ```
 
-If a path to a config file is defined, it should be a javascript file that exports an object, or a json file.
+If a path to a config file is defined, it should be yaml, json, or a javascript file exporting an object.
 
-If no file is specified `.kube.js` is loaded by default.
+If no file is specified `.kube.yaml` is loaded by default.
 
 ## Options
 
@@ -41,23 +41,39 @@ Environment variables can be most simply defined as key:value pairs.
 
 To load an environment variable from a secret, define in your configuration file as follows:
 
-```js
-module.exports = {
+```json
+{
   //...
-  env: {
-    MY_SECRET_USERNAME: {
-      secret: true,
-      name: 'my-secret',
-      key: 'username'
+  "env": {
+    "MY_SECRET_USERNAME": {
+      "secret": true,
+      "name": "my-secret",
+      "key": "username"
     },
-    MY_SECRET_PASSWORD: {
-      secret: true,
-      name: 'my-secret',
-      key: 'password'
+    "MY_SECRET_PASSWORD": {
+      "secret": true,
+      "name": "my-secret",
+      "key": "password"
     }
   }
 }
 ```
+
+Or as yaml:
+
+```yaml
+  //...
+  env:
+    MY_SECRET_USERNAME:
+      secret: true
+      name: my-secret
+      key: username
+    MY_SECRET_PASSWORD:
+      secret: true
+      name: my-secret
+      key: password
+```
+
 
 ## Recipes
 
