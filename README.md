@@ -5,7 +5,6 @@ A utility to generate the minimal necessary config files for a web app running o
 ## Prerequisites
 
 * `node@8`
-* `kd` for deployments
 
 ## Usage
 
