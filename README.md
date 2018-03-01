@@ -8,18 +8,16 @@ A utility to generate the minimal necessary config files for a web app running o
 
 ## Usage
 
-Clone the repo, and link the binary into your `PATH`:
+Install from npm:
 
 ```
-git clone git@github.com:lennym/kube-cookbook.git
-cd kube-cookbook
-npm link
+npm install -g kube-cookbook
 ```
 
 Then in the project you want to create deployment files for:
 
 ```
-kube-cookbook [config.js]
+kube-cookbook [config.yaml]
 ```
 
 If a path to a config file is defined, it should be yaml, json, or a javascript file exporting an object.
