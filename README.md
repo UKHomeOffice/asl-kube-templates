@@ -1,4 +1,4 @@
-# kute
+# kube-cookbook
 
 A utility to generate the minimal necessary config files for a web app running on kubernetes.
 
