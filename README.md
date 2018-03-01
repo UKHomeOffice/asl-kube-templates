@@ -36,6 +36,7 @@ The following minimal options must be defined:
 
 Additional options:
 
+* `recipe` - the set of templates to generate, depending on the type of app being created - default `'webapp'`
 * `replicas` - the number of instances of your app to run - default: `1`
 * `memory` - the memory limit assigned to your app - default: `'512Mi'`
 * `env` - a map of environment variables defined on your app
@@ -65,3 +66,8 @@ module.exports = {
   }
 }
 ```
+
+## Recipes
+
+Currently only one recipe is available - a basic webapp.
+

@@ -25,6 +25,8 @@ const defaults = {
 
 const options = Object.assign({}, defaults, config, args);
 
+options.recipe = options.recipe || 'webapp';
+
 cookbook(options)
   .catch(e => {
     if (e instanceof UsageError) {
