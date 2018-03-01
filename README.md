@@ -32,6 +32,7 @@ All options can be defined either in a configuration file, or as command line fl
 
 * `recipe` - the set of templates to generate, depending on the type of app being created - default `'webapp'`
 * `out` - the directory in which to create generated files - default `.`
+* `force` - overwrite existing files - default `false`
 
 Additional options for a recipe are [documented for that recipe](#webapp-options).
 
