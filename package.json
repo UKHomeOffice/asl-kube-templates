@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "kute": "bin/kute"
+    "kube-cookbook": "bin/cookbook"
   },
   "private": true,
   "scripts": {
