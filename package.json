@@ -1,17 +1,16 @@
 {
   "name": "kube-cookbook",
   "version": "1.0.0",
-  "description": "",
+  "description": "Utility to generate kubernetes configuration for basic app types",
   "main": "index.js",
   "bin": {
     "kube-cookbook": "bin/cookbook"
   },
-  "private": true,
   "scripts": {
     "test": "eslint . --config lennym"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["kubernetes", "k8s", "config", "generator"],
+  "author": "Leonard Martin <hello@lennym.co.uk>",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
