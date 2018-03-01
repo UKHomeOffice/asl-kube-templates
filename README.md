@@ -43,7 +43,6 @@ To load an environment variable from a secret, define in your configuration file
 
 ```json
 {
-  //...
   "env": {
     "MY_SECRET_USERNAME": {
       "secret": true,
@@ -62,16 +61,15 @@ To load an environment variable from a secret, define in your configuration file
 Or as yaml:
 
 ```yaml
-  //...
-  env:
-    MY_SECRET_USERNAME:
-      secret: true
-      name: my-secret
-      key: username
-    MY_SECRET_PASSWORD:
-      secret: true
-      name: my-secret
-      key: password
+env:
+  MY_SECRET_USERNAME:
+    secret: true
+    name: my-secret
+    key: username
+  MY_SECRET_PASSWORD:
+    secret: true
+    name: my-secret
+    key: password
 ```
 
 
