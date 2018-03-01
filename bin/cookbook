@@ -8,6 +8,12 @@ const cookbook = require('../lib/cookbook');
 const UsageError = require('../lib/usage-error');
 const args = require('minimist')(process.argv.slice(2));
 
+args.force = args.force || args.f;
+
+if (args.help) {
+  return usage();
+}
+
 const config = {};
 const configFile = args._[0] || '.kube.js';
 

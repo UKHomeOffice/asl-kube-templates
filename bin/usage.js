@@ -6,7 +6,7 @@ module.exports = msg => {
 
     Options:
       --out       directory in which to create files - default .
-      --force     overwrite existing files
+      --force, -f overwrite existing files
 
     Recipe Options:
       --name      name for your deployment
