@@ -3,6 +3,8 @@
 const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
+const Promise = require('bluebird');
+
 const usage = require('./usage');
 const cookbook = require('../lib/cookbook');
 const UsageError = require('../lib/usage-error');
@@ -14,7 +16,7 @@ if (args.help) {
   return usage();
 }
 
-const config = {};
+let config;
 const configFile = args._[0] || '.kube.yaml';
 
 if (configFile) {
@@ -22,10 +24,10 @@ if (configFile) {
   const filePath = path.resolve(process.cwd(), configFile);
   try {
     if (type === '.js' || type === '.json') {
-      Object.assign(config, require(filePath));
+      config = require(filePath);
     } else if (type === '.yaml' || type === '.yml') {
       const content = fs.readFileSync(filePath).toString();
-      Object.assign(config, yaml.safeLoad(content));
+      config = yaml.safeLoad(content);
     }
   } catch (e) {
     console.log(e);
@@ -37,9 +39,14 @@ const defaults = {
   recipe: 'webapp'
 };
 
-const options = Object.assign(defaults, config, args);
+if (!Array.isArray(config)) {
+  config = [config];
+}
 
-cookbook(options)
+Promise.mapSeries(config, c => {
+  const options = Object.assign(defaults, c, args);
+  return cookbook(options)
+})
   .catch(e => {
     if (e instanceof UsageError) {
       usage(e.message);

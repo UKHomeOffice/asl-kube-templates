@@ -108,3 +108,31 @@ Additional options:
 
 * `replicas` - the number of instances of your app to run - default: `1`
 * `prefix` - prefixes the file names of the generated files - default `'redis-'`
+
+## Using multiple recipes
+
+You can define multiple recipes in a single config file by defining each as an entry in an array.
+
+Example:
+
+```yaml
+---
+- name: my-webapp
+  recipe: webapp
+  image: ...
+  url: my-webapp.example.com
+  env:
+    REDIS_HOST: sessionstore
+    REDIS_PASSWORD:
+      secret: true
+      name: redis-password
+      key: password
+
+- name: sessionstore
+  recipe: redis
+  clients: my-webapp
+  passwordName: redis-password
+  passwordkey: password
+```
+
+This will generate all the files required for both the webapp, and an accompanying redis sessionstore with the password loaded from a secret in the namespace.
