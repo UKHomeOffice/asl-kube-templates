@@ -25,7 +25,7 @@ spec:
               {{#secret}}
               valueFrom:
                 secretKeyRef:
-                  name: {{{name}}}
+                  name: {{{secret}}}
                   key: {{{key}}}
               {{/secret}}
             {{/env}}
@@ -47,7 +47,7 @@ spec:
               {{#secret}}
               valueFrom:
                 secretKeyRef:
-                  name: {{{name}}}
+                  name: {{{secret}}}
                   key: {{{key}}}
               {{/secret}}
             {{/nginx}}
