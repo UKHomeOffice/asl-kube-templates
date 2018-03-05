@@ -30,6 +30,7 @@ All options can be defined either in a configuration file, or as command line fl
 
 * `recipe` - the set of templates to generate, depending on the type of app being created - default `'webapp'`
 * `out` - the directory in which to create generated files - default `.`
+* `prefix` - prefixes the name of the files generated - default `''`
 * `force` - overwrite existing files - default `false`
 
 Additional options for a recipe are [documented for that recipe](#webapp-options).
@@ -74,7 +75,10 @@ env:
 
 ## Recipes
 
-Currently only one recipe is available - a basic webapp.
+The following recipes are available:
+
+* webapp - default
+* redis
 
 ### Webapp Options
 
@@ -90,3 +94,17 @@ Additional options:
 * `memory` - the memory limit assigned to your app - default: `'512Mi'`
 * `env` - a map of environment variables defined on your app
 * `nginx` - a map of environment variables defined on your nginx proxy
+
+### Redis Options
+
+The following minimal options must be defined:
+
+* `name` - the name for your deployment
+* `clients` - defines the name of the pods which will be granted network access to the redis instance
+* `passwordName` - the secret name for the redis password secret
+* `passwordKey` - the secret key for the redis password secret
+
+Additional options:
+
+* `replicas` - the number of instances of your app to run - default: `1`
+* `prefix` - prefixes the file names of the generated files - default `'redis-'`
