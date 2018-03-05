@@ -75,10 +75,28 @@ env:
 
 ## Recipes
 
-The following recipes are available:
+The following recipes are available by default:
 
 * webapp - default
 * redis
+
+In addition to these, you can pass a path to a custom recipe, or an npm module name.
+
+To use a recipe in a local directory:
+
+```
+kube-cookbook --recipe ./kube
+```
+
+To use a recipe from a locall installed npm module:
+
+```
+kube-cookbook --recipe myrecipe
+```
+
+This will attempt to read the module `kube-recipe-myrecipe` from the local `node_modules` directory.
+
+If a scoped module name is provided - eg. `@scope/myrecipe` then it is required as-is, and not prefixed with `kube-recipe-`.
 
 ### Webapp Options
 
@@ -136,3 +154,27 @@ Example:
 ```
 
 This will generate all the files required for both the webapp, and an accompanying redis sessionstore with the password loaded from a secret in the namespace.
+
+## Recipe Definition
+
+Recipes should be defined as a javascript object, and one or more template yaml files.
+
+The exported javascript should have the following format:
+
+```js
+module.exports = {
+  files: [
+    // list of file templates to compile
+  ],
+  requires: {
+    // required parameters and types
+  },
+  options: {
+    // optional parameters and default values
+  }
+}
+```
+
+See the recipes included for examples - [./templates/webapp/index.js](webapp) | [./templates/redis/index.js](redis)
+
+Properties defined in the `requires` and `options` configuration can then be used in templates as mustache placeholders: e.g. `{{{name}}}`
