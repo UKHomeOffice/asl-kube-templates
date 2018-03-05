@@ -1,0 +1,34 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{{name}}}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: {{{name}}}
+        service: {{{name}}}
+    spec:
+      containers:
+        - name: redis
+          image: quay.io/ukhomeofficedigital/redis:v0.1.1
+          ports:
+            - containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{{passwordName}}}
+                  key: {{{passwordKey}}}
+          command: ['/usr/bin/bash']
+          args: ['-c', 'echo "requirepass ${REDIS_PASSWORD}" >> /etc/redis.conf && /run.sh']
+          volumeMounts:
+            - mountPath: /var/lib/redis
+              name: data
+          securityContext:
+            runAsNonRoot: true
+      volumes:
+        - name: data
+          emptyDir: {}

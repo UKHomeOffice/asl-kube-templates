@@ -15,7 +15,7 @@ if (args.help) {
 }
 
 const config = {};
-const configFile = args._[0] || '.kube.js';
+const configFile = args._[0] || '.kube.yaml';
 
 if (configFile) {
   const type = path.extname(configFile);
