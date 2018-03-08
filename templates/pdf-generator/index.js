@@ -9,8 +9,8 @@ module.exports = {
     clients: String
   },
   options: {
-    image: 'quay.io/ukhomeofficedigital/html-pdf-converter:69987f6c6ed1f91790b76c693a0b68003420ce6c',
-    memory: '512Mi',
+    version: 'dfc966337dd5aa243b9967559b806b84a6477a60',
+    memory: '256Mi',
     replicas: 1,
     env: {},
     nginx: {}

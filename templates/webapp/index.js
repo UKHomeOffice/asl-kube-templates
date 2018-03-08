@@ -11,7 +11,7 @@ module.exports = {
     url: String
   },
   options: {
-    memory: '512Mi',
+    memory: '256Mi',
     replicas: 1,
     env: {},
     nginx: {}

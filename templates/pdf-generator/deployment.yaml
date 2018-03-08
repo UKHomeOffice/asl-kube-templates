@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: {{{image}}}
+          image: quay.io/ukhomeofficedigital/html-pdf-converter:{{{version}}}
           imagePullPolicy: Always
           env:
             - name: APP_PORT
