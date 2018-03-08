@@ -45,6 +45,9 @@ if (!Array.isArray(config)) {
 
 Promise.mapSeries(config, c => {
   const options = Object.assign({}, defaults, c, args);
+  if (config.length > 1) {
+    options.prefix = options.prefix || `${options.name}-`;
+  }
   return cookbook(options)
 })
   .catch(e => {
