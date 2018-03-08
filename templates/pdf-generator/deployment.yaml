@@ -1,0 +1,50 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{{name}}}
+spec:
+  replicas: {{{replicas}}}
+  template:
+    metadata:
+      labels:
+        name: {{{name}}}
+        service: {{{name}}}
+    spec:
+      containers:
+        - name: app
+          image: {{{image}}}
+          imagePullPolicy: Always
+          env:
+            - name: APP_PORT
+              value: "8080"
+          resources:
+            limits:
+              memory: {{{memory}}}
+          securityContext:
+            runAsNonRoot: true
+
+        - name: chrome-headless
+          image: quay.io/ukhomeofficedigital/docker-chrome-headless:v1.0.0
+
+        - name: nginx-proxy
+          image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
+          {{#nginx.length}}
+          env:
+            {{#nginx}}
+            - name: {{{name}}}
+              {{^secret}}
+              value: {{{value}}}
+              {{/secret}}
+              {{#secret}}
+              valueFrom:
+                secretKeyRef:
+                  name: {{{secret}}}
+                  key: {{{key}}}
+              {{/secret}}
+            {{/nginx}}
+          {{/nginx.length}}
+          ports:
+            - containerPort: 10443
+          securityContext:
+            runAsNonRoot: true

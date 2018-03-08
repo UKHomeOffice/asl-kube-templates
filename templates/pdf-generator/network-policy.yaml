@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: {{{name}}}-permit-access
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: {{{clients}}}
+    ports:
+    - port: 10080
+      protocol: TCP
+    - port: 10443
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      name: {{{name}}}
