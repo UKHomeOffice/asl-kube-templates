@@ -24,11 +24,6 @@ spec:
           securityContext:
             runAsNonRoot: true
 
-        - name: chrome-headless
-          image: quay.io/ukhomeofficedigital/docker-chrome-headless:v1.0.0
-          securityContext:
-            runAsNonRoot: true
-
         - name: nginx-proxy
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
           {{#nginx.length}}
