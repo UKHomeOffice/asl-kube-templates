@@ -175,6 +175,6 @@ module.exports = {
 }
 ```
 
-See the recipes included for examples - [./templates/webapp/index.js](webapp) | [./templates/redis/index.js](redis)
+See the recipes included for examples - [webapp](./templates/webapp/index.js) | [redis](./templates/redis/index.js)
 
 Properties defined in the `requires` and `options` configuration can then be used in templates as mustache placeholders: e.g. `{{{name}}}`
