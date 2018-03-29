@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{{name}}}
+  labels:
+    name: {{{name}}}
+    role: service
+spec:
+  ports:
+  - name: http
+    port: 10080
+  - name: https
+    port: 10443
+  selector:
+    name: {{{name}}}
