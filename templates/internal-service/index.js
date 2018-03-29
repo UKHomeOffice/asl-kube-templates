@@ -7,7 +7,6 @@ module.exports = {
   requires: {
     name: String,
     image: String,
-    url: String,
     clients: String
   },
   options: {
