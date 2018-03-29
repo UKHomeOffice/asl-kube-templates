@@ -7,7 +7,7 @@ module.exports = {
   requires: {
     name: String,
     image: String,
-    url: String
+    url: String,
     clients: String
   },
   options: {
