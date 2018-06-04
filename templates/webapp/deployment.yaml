@@ -35,6 +35,7 @@ spec:
               memory: {{{memory}}}
           securityContext:
             runAsNonRoot: true
+            runAsUser: {{{uid}}}
         - name: nginx-proxy
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk:v3
           {{#nginx.length}}
