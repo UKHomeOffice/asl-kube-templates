@@ -11,7 +11,6 @@ module.exports = {
     url: String
   },
   options: {
-    uid: 999,
     memory: '256Mi',
     replicas: 1,
     env: {},
