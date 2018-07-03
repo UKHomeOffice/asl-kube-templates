@@ -1,7 +1,6 @@
 module.exports = {
   files: [
-    './deployment.yaml',
-    './service.yaml'
+    './deployment.yaml'
   ],
   requires: {
     name: String,
