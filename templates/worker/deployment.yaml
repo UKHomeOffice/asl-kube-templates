@@ -1,0 +1,37 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{{name}}}
+spec:
+  replicas: {{{replicas}}}
+  template:
+    metadata:
+      labels:
+        name: {{{name}}}
+        service: {{{name}}}
+    spec:
+      containers:
+        - name: app
+          image: {{{image}}}
+          imagePullPolicy: Always
+          {{#env.length}}
+          env:
+            {{#env}}
+            - name: {{{name}}}
+              {{^secret}}
+              value: {{{value}}}
+              {{/secret}}
+              {{#secret}}
+              valueFrom:
+                secretKeyRef:
+                  name: {{{secret}}}
+                  key: {{{key}}}
+              {{/secret}}
+            {{/env}}
+          {{/env.length}}
+          resources:
+            limits:
+              memory: {{{memory}}}
+          securityContext:
+            runAsNonRoot: true

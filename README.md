@@ -79,6 +79,8 @@ The following recipes are available by default:
 
 * webapp - default
 * redis
+* internal-service
+* worker
 
 In addition to these, you can pass a path to a custom recipe, or an npm module name.
 
@@ -113,6 +115,14 @@ Additional options:
 * `env` - a map of environment variables defined on your app
 * `nginx` - a map of environment variables defined on your nginx proxy
 
+### Internal Service Options
+
+Internal services work in the same way as public facing web apps, with the exception that they are not accessible from the internet, and can only be accessed from other services in the namespace.
+
+As such, the options are the same except the `url` option is no longer required, and a `clients` option is required.
+
+* `clients` - defines the name of the pods which will be granted network access to the service
+
 ### Redis Options
 
 The following minimal options must be defined:
@@ -126,6 +136,22 @@ Additional options:
 
 * `replicas` - the number of instances of your app to run - default: `1`
 * `prefix` - prefixes the file names of the generated files - default `'redis-'`
+
+
+### Worker Options
+
+A worker is a service which does not need to be accessed by any other service.
+
+The following minimal options must be defined:
+
+* `name` - the name for your deployment
+* `image` - the location of the docker image for your app
+
+Additional options:
+
+* `replicas` - the number of instances of your app to run - default: `1`
+* `memory` - the memory limit assigned to your app - default: `'512Mi'`
+* `env` - a map of environment variables defined on your app
 
 ## Using multiple recipes
 
