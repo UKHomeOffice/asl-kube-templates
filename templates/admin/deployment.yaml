@@ -1,37 +1,47 @@
 ---
 apiVersion: extensions/v1beta1
-kind: Pod
+kind: Deployment
 metadata:
   name: {{{name}}}
 spec:
-  containers:
-    - name: app
-      image: {{{image}}}
-      imagePullPolicy: Always
-      {{#env.length}}
-      env:
-        {{#env}}
-        - name: {{{name}}}
-          {{^secret}}
-          value: {{{value}}}
-          {{/secret}}
-          {{#secret}}
-          valueFrom:
-            secretKeyRef:
-              name: {{{secret}}}
-              key: {{{key}}}
-          {{/secret}}
-        {{/env}}
-      {{/env.length}}
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - {{{ready}}}
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - {{{alive}}}
-      securityContext:
-        runAsNonRoot: true
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: {{{name}}}
+        service: {{{name}}}
+    spec:
+      containers:
+        - name: app
+          image: {{{image}}}
+          imagePullPolicy: Always
+          {{#env.length}}
+          env:
+            {{#env}}
+            - name: {{{name}}}
+              {{^secret}}
+              value: {{{value}}}
+              {{/secret}}
+              {{#secret}}
+              valueFrom:
+                secretKeyRef:
+                  name: {{{secret}}}
+                  key: {{{key}}}
+              {{/secret}}
+            {{/env}}
+          {{/env.length}}
+          readinessProbe:
+            exec:
+              command:
+              - cat
+              - {{{ready}}}
+          livenessProbe:
+            exec:
+              command:
+              - cat
+              - {{{alive}}}
+          resources:
+            limits:
+              memory: {{{memory}}}
+          securityContext:
+            runAsNonRoot: true
