@@ -35,11 +35,13 @@ spec:
               command:
               - cat
               - {{{ready}}}
+              initialDelaySeconds: 10
           livenessProbe:
             exec:
               command:
               - cat
               - {{{alive}}}
+              initialDelaySeconds: 20
           resources:
             limits:
               memory: {{{memory}}}
