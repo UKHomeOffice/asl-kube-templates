@@ -31,17 +31,17 @@ spec:
             {{/env}}
           {{/env.length}}
           readinessProbe:
+            initialDelaySeconds: 10
             exec:
               command:
               - cat
               - {{{ready}}}
-              initialDelaySeconds: 10
           livenessProbe:
+            initialDelaySeconds: 20
             exec:
               command:
               - cat
               - {{{alive}}}
-              initialDelaySeconds: 20
           resources:
             limits:
               memory: {{{memory}}}
