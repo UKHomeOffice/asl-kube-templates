@@ -5,9 +5,11 @@ metadata:
 spec:
   ingress:
   - from:
+    {{#clients}}
     - podSelector:
         matchLabels:
-          name: {{{clients}}}
+          name: {{{.}}}
+    {{/clients}}
     ports:
     - port: 10443
       protocol: TCP

@@ -7,7 +7,10 @@ module.exports = {
   requires: {
     name: String,
     image: String,
-    clients: String
+    clients: Array
+  },
+  normalise: {
+    clients: c => [].concat(c).filter(Boolean)
   },
   options: {
     memory: '256Mi',
