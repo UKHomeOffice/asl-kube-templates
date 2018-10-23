@@ -2,12 +2,13 @@ module.exports = msg => {
   msg && console.log(msg);
 
   console.log(`
-    kube-cookbook [file] [options]
+    kube-cookbook [file [file]] [options]
 
     Options:
       --out       directory in which to create files - default .
       --force, -f overwrite existing files
       --prefix    string to prefix file names
+      --config    additional config parameters to use in your files
 
     Recipe Options:
       --name      name for your deployment

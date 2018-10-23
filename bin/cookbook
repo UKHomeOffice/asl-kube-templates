@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 const path = require('path');
-const fs = require('fs');
-const yaml = require('js-yaml');
 const Promise = require('bluebird');
 
 const usage = require('./usage');
+const loadData = require('../lib/utils/load-data');
 const cookbook = require('../lib/cookbook');
 const UsageError = require('../lib/usage-error');
 const args = require('minimist')(process.argv.slice(2));
@@ -16,6 +15,16 @@ if (args.help) {
   return usage();
 }
 
+args.config = [].concat(args.config).filter(Boolean);
+
+const params = args.config.reduce((map, file) => {
+  const name = path.basename(file, path.extname(file));
+  return {
+    ...map,
+    [name]: loadData(path.resolve(process.cwd(), file))
+  };
+}, {});
+
 const configFile = args._;
 
 if (!configFile.length) {
@@ -23,19 +32,8 @@ if (!configFile.length) {
 }
 
 const config = configFile.reduce((list, file) => {
-  const type = path.extname(file);
   const filePath = path.resolve(process.cwd(), file);
-  try {
-    if (type === '.js' || type === '.json') {
-      return list.concat(require(filePath));
-    } else if (type === '.yaml' || type === '.yml') {
-      const content = fs.readFileSync(filePath).toString();
-      return list.concat(yaml.safeLoad(content));
-    }
-  } catch (e) {
-    console.log(e);
-    throw new Error(`Could not read configuration from ${filePath}`);
-  }
+  return list.concat(loadData(filePath, params));
 }, []);
 
 const defaults = {

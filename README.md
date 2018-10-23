@@ -32,8 +32,24 @@ All options can be defined either in a configuration file, or as command line fl
 * `out` - the directory in which to create generated files - default `.`
 * `prefix` - prefixes the name of the files generated - default `''`
 * `force` - overwrite existing files - default `false`
+* `config` - files to load additional configuration parameters from
 
 Additional options for a recipe are [documented for that recipe](#webapp-options).
+
+### `config` parameters
+
+If using the `--config` flag to load additional parameters, these can be json or yaml files.
+
+Any data found in those files can be referenced in service templates as `{{config.<filename>.<parameter>}}`.
+
+For example, if I have a `versions.yaml` as follows:
+
+```
+web: 1.0
+api: 2.0
+```
+
+Then in my service configuration if I run with `--config versions.yaml`, then `{{config.versions.web}}` will be replaced with `1.0` and `{{config.versions.api}}` will be replaced with `2.0` in the generated service config.
 
 ### Environment variables
 
