@@ -16,32 +16,31 @@ if (args.help) {
   return usage();
 }
 
-let config;
-const configFile = args._[0] || '.kube.yaml';
+const configFile = args._;
 
-if (configFile) {
-  const type = path.extname(configFile);
-  const filePath = path.resolve(process.cwd(), configFile);
+if (!configFile.length) {
+  configFile.push('.kube.yaml');
+}
+
+const config = configFile.reduce((list, file) => {
+  const type = path.extname(file);
+  const filePath = path.resolve(process.cwd(), file);
   try {
     if (type === '.js' || type === '.json') {
-      config = require(filePath);
+      return list.concat(require(filePath));
     } else if (type === '.yaml' || type === '.yml') {
       const content = fs.readFileSync(filePath).toString();
-      config = yaml.safeLoad(content);
+      return list.concat(yaml.safeLoad(content));
     }
   } catch (e) {
     console.log(e);
     throw new Error(`Could not read configuration from ${filePath}`);
   }
-}
+}, []);
 
 const defaults = {
   recipe: 'webapp'
 };
-
-if (!Array.isArray(config)) {
-  config = [config];
-}
 
 Promise.mapSeries(config, c => {
   const options = Object.assign({}, defaults, c, args);
