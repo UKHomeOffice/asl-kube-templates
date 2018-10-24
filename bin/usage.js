@@ -9,6 +9,7 @@ module.exports = msg => {
       --force, -f overwrite existing files
       --prefix    string to prefix file names
       --config    additional config parameters to use in your files
+      ---dry-run  will generate config, but won't write any files
 
     Recipe Options:
       --name      name for your deployment
