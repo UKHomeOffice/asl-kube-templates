@@ -25,7 +25,7 @@ module.exports = {
       ENABLE_UUID_PARAM: '"FALSE"',
       NAXSI_USE_DEFAULT_RULES: '"FALSE"',
       PORT_IN_HOST_HEADER: '"FALSE"',
-      ERROR_REDIRECT_CODES: '""'
+      ERROR_REDIRECT_CODES: '"FALSE"'
     }
   }
 };
