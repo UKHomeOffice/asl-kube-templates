@@ -36,7 +36,7 @@ spec:
           securityContext:
             runAsNonRoot: true
         - name: nginx-proxy
-          image: quay.io/ukhomeofficedigital/nginx-proxy:v3
+          image: quay.io/ukhomeofficedigital/nginx-proxy:v3.4.4
           {{#nginx.length}}
           env:
             {{#nginx}}
