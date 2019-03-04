@@ -12,9 +12,9 @@ metadata:
     {{^internal}}
     kubernetes.io/ingress.class: "nginx-external"
     stable.k8s.psg.io/kcm.provider: http
+    {{/internal}}
   labels:
     stable.k8s.psg.io/kcm.class: "default"
-    {{/internal}}
 spec:
   tls:
   - hosts:
