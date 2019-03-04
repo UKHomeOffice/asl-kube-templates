@@ -11,6 +11,7 @@ module.exports = {
     url: String
   },
   options: {
+    internal: false,
     memory: '256Mi',
     replicas: 1,
     env: {},
