@@ -1,6 +1,6 @@
 {
   "name": "kube-cookbook",
-  "version": "3.3.6",
+  "version": "3.3.7",
   "description": "Utility to generate kubernetes configuration for basic app types",
   "main": "index.js",
   "bin": {
