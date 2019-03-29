@@ -15,7 +15,8 @@ module.exports = {
     memory: '256Mi',
     replicas: 1,
     env: {},
-    nginx: {}
+    nginx: {},
+    whitelist: null
   },
   env: {
     nginx: {
