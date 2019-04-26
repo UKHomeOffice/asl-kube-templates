@@ -13,6 +13,7 @@ module.exports = {
     clients: c => [].concat(c).filter(Boolean)
   },
   options: {
+    healthcheck: false,
     memory: '256Mi',
     replicas: 1,
     env: {},

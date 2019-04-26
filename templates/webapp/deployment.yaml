@@ -35,6 +35,18 @@ spec:
               memory: {{{memory}}}
           securityContext:
             runAsNonRoot: true
+          {{#healthcheck}}
+          livenessProbe:
+            httpGet:
+              path: {{healthcheck}}
+              port: 8080
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: {{healthcheck}}
+              port: 8080
+            timeoutSeconds: 1
+          {{/healthcheck}}
         - name: nginx-proxy
           image: quay.io/ukhomeofficedigital/nginx-proxy:v3.4.4
           {{#nginx.length}}
