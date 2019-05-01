@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: quay.io/ukhomeofficedigital/redis:v1.0.0
+          image: quay.io/ukhomeofficedigital/redis:v1.0.1
           ports:
             - containerPort: 6379
           env:
