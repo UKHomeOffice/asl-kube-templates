@@ -50,6 +50,7 @@ spec:
           {{/healthcheck}}
         - name: nginx-proxy
           image: quay.io/ukhomeofficedigital/nginx-proxy:v3
+          imagePullPolicy: Always
           {{#nginx.length}}
           env:
             {{#nginx}}
