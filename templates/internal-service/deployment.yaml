@@ -11,6 +11,12 @@ spec:
         name: {{{name}}}
         service: {{{name}}}
     spec:
+      {{#keys}}
+      volumes:
+        - name: keys
+          secret:
+            secretName: {{{keys}}}
+      {{/keys}}
       containers:
         - name: app
           image: {{{image}}}
@@ -70,3 +76,8 @@ spec:
             - containerPort: 10443
           securityContext:
             runAsNonRoot: true
+          {{#keys}}
+          volumeMounts:
+            - name: keys
+              mountPath: "/etc/keys"
+          {{/keys}}

@@ -16,6 +16,7 @@ module.exports = {
     healthcheck: false,
     memory: '256Mi',
     replicas: 1,
+    keys: null,
     env: {},
     nginx: {}
   },
