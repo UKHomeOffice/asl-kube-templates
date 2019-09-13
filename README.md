@@ -129,6 +129,7 @@ Additional options:
 
 * `replicas` - the number of instances of your app to run - default: `1`
 * `memory` - the memory limit assigned to your app - default: `'512Mi'`
+* `maxBodySize` - the maximum body size allowed by ingress in megabytes - default: `2`
 * `env` - a map of environment variables defined on your app
 * `nginx` - a map of environment variables defined on your nginx proxy
 

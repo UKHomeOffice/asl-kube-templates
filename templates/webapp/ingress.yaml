@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: {{{name}}}-ingress
   annotations:
+    ingress.kubernetes.io/proxy-body-size: "{{{maxBodySize}}}m"
     ingress.kubernetes.io/secure-backends: "true"
     ingress.kubernetes.io/backend-protocol: "HTTPS"
     {{#internal}}

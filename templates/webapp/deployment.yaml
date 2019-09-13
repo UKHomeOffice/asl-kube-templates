@@ -53,6 +53,10 @@ spec:
           imagePullPolicy: Always
           {{#nginx.length}}
           env:
+            {{#maxBodySize}}
+            - name: CLIENT_MAX_BODY_SIZE
+              value: {{{maxBodySize}}}
+            {{/maxBodySize}}
             {{#nginx}}
             - name: {{{name}}}
               {{^secret}}
