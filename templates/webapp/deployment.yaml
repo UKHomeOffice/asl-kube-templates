@@ -55,7 +55,7 @@ spec:
           env:
             {{#maxBodySize}}
             - name: CLIENT_MAX_BODY_SIZE
-              value: {{{maxBodySize}}}
+              value: '{{{maxBodySize}}}'
             {{/maxBodySize}}
             {{#nginx}}
             - name: {{{name}}}
