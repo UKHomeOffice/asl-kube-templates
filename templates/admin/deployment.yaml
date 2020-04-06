@@ -42,6 +42,13 @@ spec:
               command:
               - cat
               - {{{alive}}}
+          startupProbe:
+            failureThreshold: 60
+            periodSeconds: 5
+            exec:
+              command:
+              - cat
+              - {{{alive}}}
           resources:
             limits:
               memory: {{{memory}}}
