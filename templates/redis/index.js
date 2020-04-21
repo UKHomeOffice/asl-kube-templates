@@ -12,6 +12,8 @@ module.exports = {
   },
   options: {
     prefix: 'redis-',
-    replicas: 1
+    replicas: 1,
+    memory: '64Mi',
+    cpu: '100m'
   }
 };

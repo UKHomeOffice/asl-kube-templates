@@ -27,6 +27,10 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/redis
               name: data
+          resources:
+            limits:
+              memory: {{{memory}}}
+              cpu: {{{cpu}}}
           securityContext:
             runAsNonRoot: true
       volumes:
