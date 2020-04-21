@@ -11,6 +11,7 @@ spec:
         name: {{{name}}}
         service: {{{name}}}
     spec:
+      restartPolicy: Never
       containers:
         - name: app
           image: {{{image}}}
@@ -50,4 +51,3 @@ spec:
               cpu: {{{cpu}}}
           securityContext:
             runAsNonRoot: true
-          restartPolicy: Never
