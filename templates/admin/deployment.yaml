@@ -30,20 +30,6 @@ spec:
               {{/secret}}
             {{/env}}
           {{/env.length}}
-          readinessProbe:
-            initialDelaySeconds: 10
-            exec:
-              command:
-              - cat
-              - {{{ready}}}
-          livenessProbe:
-            initialDelaySeconds: 10
-            failureThreshold: 30
-            periodSeconds: 10
-            exec:
-              command:
-              - cat
-              - {{{alive}}}
           resources:
             limits:
               memory: {{{memory}}}
