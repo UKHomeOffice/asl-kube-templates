@@ -14,6 +14,7 @@ module.exports = {
     healthcheck: false,
     internal: false,
     memory: '256Mi',
+    cpu: '50m',
     maxBodySize: 2,
     replicas: 1,
     env: {},

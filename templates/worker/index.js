@@ -8,6 +8,7 @@ module.exports = {
   },
   options: {
     memory: '256Mi',
+    cpu: '50m',
     replicas: 1,
     env: {}
   },

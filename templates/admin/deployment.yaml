@@ -47,6 +47,7 @@ spec:
           resources:
             limits:
               memory: {{{memory}}}
+              cpu: {{{cpu}}}
           securityContext:
             runAsNonRoot: true
           restartPolicy: Never
