@@ -8,6 +8,8 @@ module.exports = {
   },
   options: {
     memory: '256Mi',
+    alive: '/app/alive',
+    ready: '/app/ready',
     env: {}
   },
   env: {}
