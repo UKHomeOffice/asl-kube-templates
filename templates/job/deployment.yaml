@@ -1,0 +1,35 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: {{{name}}}-
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: app
+          image: {{{image}}}
+          imagePullPolicy: Always
+          command: {{{command}}}
+          {{#env.length}}
+          env:
+            {{#env}}
+            - name: {{{name}}}
+              {{^secret}}
+              value: {{{value}}}
+              {{/secret}}
+              {{#secret}}
+              valueFrom:
+                secretKeyRef:
+                  name: {{{secret}}}
+                  key: {{{key}}}
+              {{/secret}}
+            {{/env}}
+          {{/env.length}}
+          resources:
+            limits:
+              memory: {{{memory}}}
+              cpu: {{{cpu}}}
+          securityContext:
+            runAsNonRoot: true
