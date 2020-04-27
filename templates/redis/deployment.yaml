@@ -32,8 +32,11 @@ spec:
               name: data
           resources:
             limits:
-              memory: {{{memory}}}
-              cpu: {{{cpu}}}
+              memory: {{{memory.limit}}}
+              cpu: {{{cpu.limit}}}
+            requests:
+              memory: {{{memory.requests}}}
+              cpu: {{{cpu.requests}}}
           securityContext:
             runAsNonRoot: true
       volumes:

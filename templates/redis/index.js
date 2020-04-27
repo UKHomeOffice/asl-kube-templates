@@ -13,7 +13,13 @@ module.exports = {
   options: {
     prefix: 'redis-',
     replicas: 1,
-    memory: '64Mi',
-    cpu: '100m'
+    memory: {
+      requests: '32Mi',
+      limit: '128Mi'
+    },
+    cpu: {
+      requests: '50m',
+      limit: '400m'
+    },
   }
 };

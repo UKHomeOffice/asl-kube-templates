@@ -41,8 +41,11 @@ spec:
           {{/env.length}}
           resources:
             limits:
-              memory: {{{memory}}}
-              cpu: {{{cpu}}}
+              memory: {{{memory.limit}}}
+              cpu: {{{cpu.limit}}}
+            requests:
+              memory: {{{memory.requests}}}
+              cpu: {{{cpu.requests}}}
           securityContext:
             runAsNonRoot: true
           {{#healthcheck}}
@@ -81,9 +84,9 @@ spec:
           securityContext:
             runAsNonRoot: true
           resources:
-            limits:
-              memory: 128Mi
-              cpu: 50m
+            requests:
+              memory: 32Mi
+              cpu: 20m
           {{#keys}}
           volumeMounts:
             - name: keys

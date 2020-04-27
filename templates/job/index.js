@@ -8,8 +8,14 @@ module.exports = {
     command: String
   },
   options: {
-    memory: '256Mi',
-    cpu: '50m',
+    memory: {
+      requests: '128Mi',
+      limit: '512Mi'
+    },
+    cpu: {
+      requests: '200m',
+      limit: '400m'
+    },
     env: {}
   },
   env: {}
