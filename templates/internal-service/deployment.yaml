@@ -80,6 +80,10 @@ spec:
             - containerPort: 10443
           securityContext:
             runAsNonRoot: true
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 50m
           {{#keys}}
           volumeMounts:
             - name: keys
