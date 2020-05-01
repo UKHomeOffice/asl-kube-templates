@@ -4,9 +4,10 @@ kind: Job
 metadata:
   generateName: {{{name}}}-
 spec:
+  completions: 1
+  backoffLimit: 0
   template:
     spec:
-      completions: 1
       restartPolicy: Never
       containers:
         - name: app
