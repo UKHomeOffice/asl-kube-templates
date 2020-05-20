@@ -12,7 +12,6 @@ spec:
       containers:
         - name: app
           image: {{{image}}}
-          imagePullPolicy: Always
           command: {{{command}}}
           {{#env.length}}
           env:
