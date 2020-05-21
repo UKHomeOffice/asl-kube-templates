@@ -20,6 +20,6 @@ module.exports = {
     cpu: {
       requests: '50m',
       limit: '400m'
-    },
+    }
   }
 };
