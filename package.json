@@ -1,6 +1,6 @@
 {
   "name": "@asl/kube-templates",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "Utility to generate kubernetes configuration for basic app types",
   "main": "index.js",
   "bin": {
