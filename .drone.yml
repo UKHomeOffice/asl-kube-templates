@@ -1,0 +1,24 @@
+pipeline:
+
+  test:
+    image: node:12
+    secrets:
+      - npm_auth_token
+    commands:
+      - npm ci
+      - npm test
+    when:
+      event: [push, pull_request, tag]
+
+  publish:
+    image: node:12
+    secrets:
+      - npm_auth_token
+    commands:
+      - npm publish
+    when:
+      event: tag
+
+matrix:
+  NPM_AUTH_USERNAME:
+    - asl
