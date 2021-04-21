@@ -7,6 +7,9 @@ spec:
   completions: 1
   backoffLimit: 0
   template:
+    metadata:
+      labels:
+        name: {{{name}}}
     spec:
       restartPolicy: Never
       containers:

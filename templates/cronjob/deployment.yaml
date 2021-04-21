@@ -8,6 +8,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            name: {{{name}}}
         spec:
           restartPolicy: Never
           containers:
