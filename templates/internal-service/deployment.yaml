@@ -84,7 +84,7 @@ spec:
           resources:
             requests:
               memory: 32Mi
-              cpu: 40m
+              cpu: 100m
           {{#keys}}
           volumeMounts:
             - name: keys
