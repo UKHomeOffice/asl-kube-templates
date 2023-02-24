@@ -21,10 +21,10 @@ metadata:
     cert-manager.io/solver: http01
 spec:
 {{#internal}}
-  ingressClassName: ingress-internal
+  ingressClassName: nginx-internal
 {{/internal}}
 {{^internal}}
-  ingressClassName: ingress-external
+  ingressClassName: nginx-external
 {{/internal}}
   tls:
   - hosts:
