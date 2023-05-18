@@ -6,28 +6,28 @@ steps:
   - name: install
     image: node:12
     environment:
-      NPM_AUTH_USERNAME:
-        from_secret: npm_auth_username
-      NPM_AUTH_TOKEN:
-        from_secret: npm_auth_token
+      ART_AUTH_TOKEN:
+        from_secret: art_auth_token
+      GITHUB_AUTH_TOKEN:
+        from_secret: github_token
     commands:
       - npm ci
   - name: test
     image: node:12
     environment:
-      NPM_AUTH_USERNAME:
-        from_secret: npm_auth_username
-      NPM_AUTH_TOKEN:
-        from_secret: npm_auth_token
+      ART_AUTH_TOKEN:
+        from_secret: art_auth_token
+      GITHUB_AUTH_TOKEN:
+        from_secret: github_token
     commands:
       - npm test
   - name: publish
     image: node:12
     environment:
-      NPM_AUTH_USERNAME:
-        from_secret: npm_auth_username
-      NPM_AUTH_TOKEN:
-        from_secret: npm_auth_token
+      ART_AUTH_TOKEN:
+        from_secret: art_auth_token
+      GITHUB_AUTH_TOKEN:
+        from_secret: github_token
     commands:
       - npm publish
     when:
