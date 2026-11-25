@@ -24,6 +24,7 @@ module.exports = {
     },
     replicas: 1,
     keys: null,
+    egress: [],
     env: {},
     nginx: {}
   },

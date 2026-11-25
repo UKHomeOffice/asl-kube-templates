@@ -14,6 +14,33 @@ spec:
     ports:
     - port: 10443
       protocol: TCP
+  {{#egress.length}}
+  egress:
+  {{#egress}}
+  - to:
+    - podSelector:
+        matchLabels:
+          name: {{{.}}}
+    ports:
+    - port: 10443
+      protocol: TCP
+  {{/egress}}
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+  policyTypes:
+  - Ingress
+  - Egress
+  {{/egress.length}}
   podSelector:
     matchLabels:
       name: {{{name}}}

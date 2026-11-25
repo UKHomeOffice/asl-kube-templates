@@ -141,6 +141,9 @@ As such, the options are the same except the `url` option is no longer required,
 
 * `clients` - defines the name of the pods which will be granted network access to the service
 
+Additional options:
+
+* `egress` - the names of internal services the service may connect to on port 10443. When set, all other outgoing traffic is blocked, except DNS lookups to `kube-dns` in `kube-system`. When not set, outgoing traffic is not restricted - default: `[]`
 ### Redis Options
 
 The following minimal options must be defined:
